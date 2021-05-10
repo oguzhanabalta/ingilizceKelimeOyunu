@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KelimeOgreniyorumDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="TBLKATEGORI">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KategoriAd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="KategoriAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="KategoriResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLOYUNLARs" Relationship="Self.FK_TBLOYUNLAR_TBLKATEGORI" FromRole="TBLKATEGORI" ToRole="TBLOYUNLAR" />
+  </EntityType>
+  <EntityType Name="TBLKISILER">
+    <Key>
+      <PropertyRef Name="KisiId" />
+    </Key>
+    <Property Name="KisiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KisiAd" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="KisiSoyad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="kullaniciadi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="sifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TBLOYUNLARs" Relationship="Self.FK_TBLOYUNLAR_TBLKISILER" FromRole="TBLKISILER" ToRole="TBLOYUNLAR" />
+  </EntityType>
+  <EntityType Name="TBLOYUNLAR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OyunAdi" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OyunAciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OyunLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OyunResim" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="OyunTarih" Type="DateTime" Precision="3" />
+    <Property Name="OyunuYapan" Type="Int32" />
+    <Property Name="OyunKategori" Type="Int32" />
+    <NavigationProperty Name="TBLKATEGORI" Relationship="Self.FK_TBLOYUNLAR_TBLKATEGORI" FromRole="TBLOYUNLAR" ToRole="TBLKATEGORI" />
+    <NavigationProperty Name="TBLKISILER" Relationship="Self.FK_TBLOYUNLAR_TBLKISILER" FromRole="TBLOYUNLAR" ToRole="TBLKISILER" />
+  </EntityType>
+  <Association Name="FK_TBLOYUNLAR_TBLKATEGORI">
+    <End Role="TBLKATEGORI" Type="Self.TBLKATEGORI" Multiplicity="0..1" />
+    <End Role="TBLOYUNLAR" Type="Self.TBLOYUNLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKATEGORI">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="TBLOYUNLAR">
+        <PropertyRef Name="OyunKategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLOYUNLAR_TBLKISILER">
+    <End Role="TBLKISILER" Type="Self.TBLKISILER" Multiplicity="0..1" />
+    <End Role="TBLOYUNLAR" Type="Self.TBLOYUNLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKISILER">
+        <PropertyRef Name="KisiId" />
+      </Principal>
+      <Dependent Role="TBLOYUNLAR">
+        <PropertyRef Name="OyunuYapan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KelimeOgreniyorumDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="TBLKATEGORIs" EntityType="Self.TBLKATEGORI" />
+    <EntitySet Name="TBLKISILERs" EntityType="Self.TBLKISILER" />
+    <EntitySet Name="TBLOYUNLARs" EntityType="Self.TBLOYUNLAR" />
+    <AssociationSet Name="FK_TBLOYUNLAR_TBLKATEGORI" Association="Self.FK_TBLOYUNLAR_TBLKATEGORI">
+      <End Role="TBLKATEGORI" EntitySet="TBLKATEGORIs" />
+      <End Role="TBLOYUNLAR" EntitySet="TBLOYUNLARs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLOYUNLAR_TBLKISILER" Association="Self.FK_TBLOYUNLAR_TBLKISILER">
+      <End Role="TBLKISILER" EntitySet="TBLKISILERs" />
+      <End Role="TBLOYUNLAR" EntitySet="TBLOYUNLARs" />
+    </AssociationSet>
+    <EntitySet Name="TBLMESAJs" EntityType="KelimeOgreniyorumDBModel.TBLMESAJ" />
+  </EntityContainer>
+  <EntityType Name="TBLMESAJ">
+    <Key>
+      <PropertyRef Name="MesajId" />
+    </Key>
+    <Property Name="MesajId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdSoyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="MesajIcerik" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

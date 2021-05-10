@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KelimeOgreniyorumDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="TBLKATEGORI">
+    <Key>
+      <PropertyRef Name="KategoriId" />
+    </Key>
+    <Property Name="KategoriId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KategoriAd" Type="varchar(max)" />
+    <Property Name="KategoriAciklama" Type="varchar(max)" />
+    <Property Name="KategoriResim" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="TBLKISILER">
+    <Key>
+      <PropertyRef Name="KisiId" />
+    </Key>
+    <Property Name="KisiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KisiAd" Type="varchar(max)" />
+    <Property Name="KisiSoyad" Type="varchar(max)" />
+    <Property Name="kullaniciadi" Type="varchar(max)" />
+    <Property Name="sifre" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="TBLMESAJ">
+    <Key>
+      <PropertyRef Name="MesajId" />
+    </Key>
+    <Property Name="MesajId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdSoyad" Type="varchar" MaxLength="50" />
+    <Property Name="Konu" Type="varchar" MaxLength="50" />
+    <Property Name="Mail" Type="varchar" MaxLength="200" />
+    <Property Name="MesajIcerik" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="TBLOYUNLAR">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OyunAdi" Type="varchar(max)" />
+    <Property Name="OyunAciklama" Type="varchar(max)" />
+    <Property Name="OyunLink" Type="varchar(max)" />
+    <Property Name="OyunResim" Type="varchar(max)" />
+    <Property Name="OyunTarih" Type="datetime" />
+    <Property Name="OyunuYapan" Type="int" />
+    <Property Name="OyunKategori" Type="int" />
+  </EntityType>
+  <Association Name="FK_TBLOYUNLAR_TBLKATEGORI">
+    <End Role="TBLKATEGORI" Type="Self.TBLKATEGORI" Multiplicity="0..1" />
+    <End Role="TBLOYUNLAR" Type="Self.TBLOYUNLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKATEGORI">
+        <PropertyRef Name="KategoriId" />
+      </Principal>
+      <Dependent Role="TBLOYUNLAR">
+        <PropertyRef Name="OyunKategori" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TBLOYUNLAR_TBLKISILER">
+    <End Role="TBLKISILER" Type="Self.TBLKISILER" Multiplicity="0..1" />
+    <End Role="TBLOYUNLAR" Type="Self.TBLOYUNLAR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TBLKISILER">
+        <PropertyRef Name="KisiId" />
+      </Principal>
+      <Dependent Role="TBLOYUNLAR">
+        <PropertyRef Name="OyunuYapan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KelimeOgreniyorumDBModelStoreContainer">
+    <EntitySet Name="TBLKATEGORI" EntityType="Self.TBLKATEGORI" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLKISILER" EntityType="Self.TBLKISILER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLMESAJ" EntityType="Self.TBLMESAJ" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TBLOYUNLAR" EntityType="Self.TBLOYUNLAR" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_TBLOYUNLAR_TBLKATEGORI" Association="Self.FK_TBLOYUNLAR_TBLKATEGORI">
+      <End Role="TBLKATEGORI" EntitySet="TBLKATEGORI" />
+      <End Role="TBLOYUNLAR" EntitySet="TBLOYUNLAR" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TBLOYUNLAR_TBLKISILER" Association="Self.FK_TBLOYUNLAR_TBLKISILER">
+      <End Role="TBLKISILER" EntitySet="TBLKISILER" />
+      <End Role="TBLOYUNLAR" EntitySet="TBLOYUNLAR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

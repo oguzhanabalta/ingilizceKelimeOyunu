@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KelimeOgreniyorumDBModelStoreContainer" CdmEntityContainer="KelimeOgreniyorumDBEntities">
+    <EntitySetMapping Name="TBLKATEGORIs">
+      <EntityTypeMapping TypeName="KelimeOgreniyorumDBModel.TBLKATEGORI">
+        <MappingFragment StoreEntitySet="TBLKATEGORI">
+          <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+          <ScalarProperty Name="KategoriAd" ColumnName="KategoriAd" />
+          <ScalarProperty Name="KategoriAciklama" ColumnName="KategoriAciklama" />
+          <ScalarProperty Name="KategoriResim" ColumnName="KategoriResim" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLKISILERs">
+      <EntityTypeMapping TypeName="KelimeOgreniyorumDBModel.TBLKISILER">
+        <MappingFragment StoreEntitySet="TBLKISILER">
+          <ScalarProperty Name="KisiId" ColumnName="KisiId" />
+          <ScalarProperty Name="KisiAd" ColumnName="KisiAd" />
+          <ScalarProperty Name="KisiSoyad" ColumnName="KisiSoyad" />
+          <ScalarProperty Name="kullaniciadi" ColumnName="kullaniciadi" />
+          <ScalarProperty Name="sifre" ColumnName="sifre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLOYUNLARs">
+      <EntityTypeMapping TypeName="KelimeOgreniyorumDBModel.TBLOYUNLAR">
+        <MappingFragment StoreEntitySet="TBLOYUNLAR">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="OyunAdi" ColumnName="OyunAdi" />
+          <ScalarProperty Name="OyunAciklama" ColumnName="OyunAciklama" />
+          <ScalarProperty Name="OyunLink" ColumnName="OyunLink" />
+          <ScalarProperty Name="OyunResim" ColumnName="OyunResim" />
+          <ScalarProperty Name="OyunTarih" ColumnName="OyunTarih" />
+          <ScalarProperty Name="OyunuYapan" ColumnName="OyunuYapan" />
+          <ScalarProperty Name="OyunKategori" ColumnName="OyunKategori" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TBLMESAJs">
+      <EntityTypeMapping TypeName="KelimeOgreniyorumDBModel.TBLMESAJ">
+        <MappingFragment StoreEntitySet="TBLMESAJ">
+          <ScalarProperty Name="MesajIcerik" ColumnName="MesajIcerik" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Konu" ColumnName="Konu" />
+          <ScalarProperty Name="AdSoyad" ColumnName="AdSoyad" />
+          <ScalarProperty Name="MesajId" ColumnName="MesajId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
